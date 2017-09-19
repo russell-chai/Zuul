@@ -1,3 +1,7 @@
+/*
+Author: Russell Chai
+This program is a two user game for tic tac toe
+*/
 #include <iostream>
 
 using namespace std;
