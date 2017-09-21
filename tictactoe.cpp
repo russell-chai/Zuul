@@ -1,8 +1,12 @@
+/*
+Author: Russell Chai
+This program is a two user game for tic tac toe
+*/
 #include <iostream>
 
 using namespace std;
 
-char board[3][3]//tictactoe board
+char board[3][3];//tictactoe board
 int counter = 0;//number if pieces set down
 int XWins = 0;//number of times x was placed
 int YWins = 0;//number of times y was placed
