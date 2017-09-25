@@ -6,13 +6,10 @@ This program is a two user game for tic tac toe
 
 using namespace std;
 
-char board[3][3];//tictactoe board
-int counter = 0;//number if pieces set down
-int XWins = 0;//number of times x was placed
-int YWins = 0;//number of times y was placed
+
 
 //print board
-void printBoard() {
+void printBoard(char board[3][3]) {
   //print column labels
   cout << "\t" << "1" << "\t" << "2" << "\t" << "3" << endl;
   char line;
@@ -26,16 +23,8 @@ void printBoard() {
     cout << endl;
   }
 }
-//clear board
-void resetBoard() {
-  for (int a = 0; a < 3; a++) {
-    for (int b = 0; b < 3; b++) {
-      board[a][b] = ' ';
-    }
-  }
-}
 //check if a player won
-bool checkWin(char player) {
+bool checkWin(char player, char board[3][3]) {
   //check by row
   for (int a = 0; a < 3; a++) {
     int count = 0;
@@ -70,10 +59,19 @@ bool checkWin(char player) {
   return false;
 }
 int main() {
+   char board[3][3];//tictactoe board
+   int counter = 0;//number if pieces set down
+   int XWins = 0;//number of times x was placed
+   int YWins = 0;//number of times y was placed
   while(true) {
    cout << "Enter move by row, column (ex. a1)" << endl;
-   resetBoard();
-   printBoard();
+   counter = 0;
+   for (int a = 0; a < 3; a++) {
+    for (int b = 0; b < 3; b++) {
+      board[a][b] = ' ';
+    }
+  }
+   printBoard(board);
    while(true) {
      //get input
     char input[2];
@@ -85,27 +83,37 @@ int main() {
       //check which player's turn
       if (counter % 2 == 0) {
 	board[x][y] = 'X';
-	if (checkWin('X')) { //if player X won...
+	if (checkWin('X', board)) { //if player X won...
 	  XWins++;
-	  printBoard();
+	  printBoard(board);
 	  cout << "X Wins" << endl;
 	  cout << "games won" << endl;
 	  cout << "x: " << XWins << " games" << endl;
 	  cout << "y: " << YWins << " games" << endl;
-	  resetBoard();
+	  counter = 0;
+          for (int a = 0; a < 3; a++) {
+             for (int b = 0; b < 3; b++) {
+                 board[a][b] = ' ';
+             }
+          }
 	  break;
 	}
       }
       else {
 	board[x][y] = 'O';
-	if (checkWin('O')) {//if player O won...
+	if (checkWin('O', board)) {//if player O won...
 	  YWins++;
-	  printBoard();
+	  printBoard(board);
 	  cout << "O Wins" << endl;
 	  cout << "games won" << endl;
 	  cout << "x: " << XWins << " games" << endl;
 	  cout << "y: " << YWins << " games" << endl;
-	  resetBoard();
+	  counter = 0;
+          for (int a = 0; a < 3; a++) {
+              for (int b = 0; b < 3; b++) {
+                 board[a][b] = ' ';
+              }
+          }
 	  break;
 	}
       }
