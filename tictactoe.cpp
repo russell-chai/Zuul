@@ -63,14 +63,14 @@ int main() {
    int counter = 0;//number if pieces set down
    int XWins = 0;//number of times x was placed
    int YWins = 0;//number of times y was placed
-  while(true) {
+   while(true) {
    cout << "Enter move by row, column (ex. a1)" << endl;
    counter = 0;
    for (int a = 0; a < 3; a++) {
-    for (int b = 0; b < 3; b++) {
-      board[a][b] = ' ';
-    }
-  }
+     for (int b = 0; b < 3; b++) {
+       board[a][b] = ' ';
+     }
+   }
    printBoard(board);
    while(true) {
      //get input
@@ -118,11 +118,11 @@ int main() {
 	}
       }
       counter++;
-      printBoard();
+      printBoard(board);
     }
     else {
       cout << "invalid move" << endl;
     }
   }
-  }
+}
 }
