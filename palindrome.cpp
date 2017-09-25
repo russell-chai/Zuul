@@ -8,6 +8,7 @@ This programs takes in a line and sees if it is a palindrome
 using namespace std;
 
 int main() {
+  cout << "enter statement and will output if it is a palindrome or not" << endl;
   //char array for input
   char palindromeTest[80];
   
