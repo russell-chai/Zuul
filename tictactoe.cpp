@@ -73,6 +73,19 @@ int main() {
       }
       printBoard(board);
       while(true) {
+	  if (counter == 9) {
+	      cout << "tie" << endl;
+	      cout << "games won" << endl;
+              cout << "x: " << XWins << " games" << endl;
+	      cout << "y: " << YWins << " games" << endl;
+	      counter = 0;
+	      for (int a = 0; a < 3; a++) {
+	          for (int b = 0; b < 3; b++) {
+		      board[a][b] = ' ';
+		  }
+	       }
+ 	       break;	  
+	  }
           //get input
 	  char input[2];
 	  cin >> input;
