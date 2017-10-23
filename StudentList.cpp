@@ -1,6 +1,6 @@
 /*
 Author: Russell Chai
-This program creates of list of students where the user can add and delte students
+This program allows the user to create lists of students where the user can add and delte students
 */
 #include <iostream>
 #include <string.h>
