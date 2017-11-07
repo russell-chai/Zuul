@@ -10,7 +10,10 @@ VideoGames::VideoGames(char* newTitle, int newYear, char* newPublisher, float ne
   publisher = newPublisher;
   rating = newRating;
 }
-VideoGames
+void VideoGames::print() {
+  cout << "Video Game:" << endl;
+  cout << title << " " << year << " " << publisher << " " << rating << endl;
+}
 VideoGames::~VideoGames() {
   
 }

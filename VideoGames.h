@@ -5,7 +5,7 @@ using namespace std;
 
 class VideoGames : public DigitalMedia {
  public:
- VideoGames(char* newTitle, int newYear, char* newPublisher, float newRating);
+  VideoGames(char* newTitle, int newYear, char* newPublisher, float newRating);
   char* getPublisher();
   float getRating();
   ~VideoGames();

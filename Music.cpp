@@ -10,7 +10,11 @@ Music::Music(char* newTitle, char* newArtist, int newYear, float newDuration, ch
   year = newYear;
   duration = newDuration;
   publisher = newPublisher;
-} 
+}
+void Music::print() {
+  cout << "Music:" << endl;
+  cout << title << " " << artist << " " << year << " " << duration << " " << publisher << endl;
+}
 char* Music::getArtist() {
   return artist;
 }

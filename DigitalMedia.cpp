@@ -7,7 +7,7 @@ DigitalMedia::DigitalMedia(char* newTitle, int newYear) {
   title = newTitle;
   year = newYear;
 }
-virtual void DigitalMedia::print() {
+void DigitalMedia::print() {
   cout << endl;
 }
 DigitalMedia::~DigitalMedia() {
