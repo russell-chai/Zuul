@@ -11,9 +11,19 @@ Music::Music(char* newTitle, char* newArtist, int newYear, float newDuration, ch
   duration = newDuration;
   publisher = newPublisher;
 }
+Music::~Music() {
+  delete []title;
+  delete []artist;
+  delete []publisher;
+}
 void Music::print() {
   cout << "Music:" << endl;
-  cout << title << " " << artist << " " << year << " " << duration << " " << publisher << endl;
+  cout << "title: " << title << endl;
+  cout << "artist: " << artist << endl;
+  cout << "year: " << year << endl;
+  cout << "duration: " << duration << endl;
+  cout << "publisher: " << publisher << endl;
+  cout << endl;
 }
 char* Music::getArtist() {
   return artist;

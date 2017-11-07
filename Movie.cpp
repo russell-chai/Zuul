@@ -13,7 +13,11 @@ Movie::Movie(char* newTitle, char* newDirector, int newYear, float newDuration, 
 }
 void Movie::print() {
   cout << "Movie:" << endl;
-  cout << title << " " << director << " " << year << " " << duration << " " << rating << endl;
+  cout << "title: " << title << endl;
+  cout << "director: " << director << endl;
+  cout << "year: " << year << endl;
+  cout << "rating: " << rating << endl;
+  cout << endl;
 }
 char* Movie::getDirector() {
   return director;
@@ -25,5 +29,6 @@ float Movie::getRating() {
   return rating;
 }
 Movie::~Movie() {
-
+  delete []title;
+  delete []director;
 }
