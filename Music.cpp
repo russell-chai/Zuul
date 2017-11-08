@@ -3,6 +3,7 @@
 
 using namespace std;
 
+//constructor
 Music::Music(char* newTitle, char* newArtist, int newYear, float newDuration, char* newPublisher) : DigitalMedia(newTitle, newYear) {
   type = 2;
   title = newTitle;
@@ -11,11 +12,14 @@ Music::Music(char* newTitle, char* newArtist, int newYear, float newDuration, ch
   duration = newDuration;
   publisher = newPublisher;
 }
+//destructor
 Music::~Music() {
-  delete []title;
-  delete []artist;
-  delete []publisher;
+  cout << "deleted " << title << endl;
+  delete[] title;
+  delete[] artist;
+  delete[] publisher;
 }
+//print function
 void Music::print() {
   cout << "Music:" << endl;
   cout << "title: " << title << endl;
@@ -25,6 +29,8 @@ void Music::print() {
   cout << "publisher: " << publisher << endl;
   cout << endl;
 }
+
+//getters
 char* Music::getArtist() {
   return artist;
 }

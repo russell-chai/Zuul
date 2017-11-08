@@ -3,6 +3,7 @@
 
 using namespace std;
 
+//constructor
 Movie::Movie(char* newTitle, char* newDirector, int newYear, float newDuration, float newRating) : DigitalMedia(newTitle, newYear) {
   type = 3;
   title = newTitle;
@@ -11,6 +12,7 @@ Movie::Movie(char* newTitle, char* newDirector, int newYear, float newDuration, 
   duration = newDuration;
   rating = newRating;
 }
+//print function
 void Movie::print() {
   cout << "Movie:" << endl;
   cout << "title: " << title << endl;
@@ -19,6 +21,8 @@ void Movie::print() {
   cout << "rating: " << rating << endl;
   cout << endl;
 }
+
+//getters
 char* Movie::getDirector() {
   return director;
 }
@@ -28,7 +32,10 @@ float Movie::getDuration() {
 float Movie::getRating() {
   return rating;
 }
+
+//destructor
 Movie::~Movie() {
+  cout << "deleted " << title << endl;
   delete []title;
   delete []director;
 }

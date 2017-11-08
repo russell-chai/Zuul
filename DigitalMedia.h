@@ -1,4 +1,7 @@
-
+/*
+Digital Media header file
+ */
+//header guard
 #ifndef DIGITALMEDIA_H
 #define DIGITALMEDIA_H
 
@@ -6,13 +9,14 @@
 
 
 class DigitalMedia {
+  //variables that are passed down to children
  protected:
   int type;
   int year;
   char* title;
  public:
   DigitalMedia(char* title, int year);
-  ~DigitalMedia();
+  virtual ~DigitalMedia();
   virtual void print();
   
   char* getTitle();
