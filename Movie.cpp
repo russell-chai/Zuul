@@ -18,6 +18,7 @@ void Movie::print() {
   cout << "title: " << title << endl;
   cout << "director: " << director << endl;
   cout << "year: " << year << endl;
+  cout << "duration: " << duration << endl;
   cout << "rating: " << rating << endl;
   cout << endl;
 }
