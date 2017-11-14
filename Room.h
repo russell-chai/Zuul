@@ -6,10 +6,14 @@ using namespace std;
 
 class Room {
  public:
-  Room(char* newName, vector<Objects*> *newHasObjects, map<char*, Room*> newNextRooms);
+  Room(char* newName);
   char* getName();
   vector<Objects*>* getHasObjects();
   map<char*, Room*> getNextRooms();
+  void addObject(Objects* object);
+  void removeObject(Objects* object);
+  void addAdjacentRoom(char* direction, Room* newRoom);
+  
  private:
   char* name;
   vector<Objects*> *hasObjects;

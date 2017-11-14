@@ -6,9 +6,9 @@ using namespace std;
 
 class Objects {
  public:
-  Objects(char* newName);
-  
+  Objects(char* newName);  
   char* getName();
+  ~Objects();
  private:
   char* name;
 };
