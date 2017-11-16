@@ -13,7 +13,8 @@ class Room {
   void addObject(Objects* object);
   void removeObject(Objects* object);
   void addAdjacentRoom(char* direction, Room* newRoom);
-  
+  int sizeOfInventory();
+ 
  private:
   char* name;
   vector<Objects*> *hasObjects;

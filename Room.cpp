@@ -13,6 +13,9 @@ void Room::addObject(Objects *object) {
   hasObjects->push_back(object);
 }
 
+char* Room::getName() {
+  return name;
+}
 void Room::removeObject(Objects *object) {
   for (int a = 0; a < hasObjects->size(); a++) {
     if (strcmp(hasObjects->at(a)->getName(), object->getName()) == 0) {
@@ -21,6 +24,9 @@ void Room::removeObject(Objects *object) {
       break;
     }
   }
+}
+int Room::sizeOfInventory() {
+  return hasObjects->size();
 }
 void Room::addAdjacentRoom(char* direction, Room* nextRoom) {
   nextRooms[direction] = nextRoom;
