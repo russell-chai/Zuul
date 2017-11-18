@@ -19,7 +19,6 @@ char* Room::getName() {
 void Room::removeObject(Objects *object) {
   for (int a = 0; a < hasObjects->size(); a++) {
     if (strcmp(hasObjects->at(a)->getName(), object->getName()) == 0) {
-      delete hasObjects->at(a);
       hasObjects->erase(hasObjects->begin() + a);
       break;
     }

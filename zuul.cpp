@@ -39,7 +39,7 @@ void printOptions(Room *current, vector<Objects*> *inventory) {
     cout << "DROP to place something in your inventory into this room" << endl;
   }
   if (current->sizeOfInventory() > 0) {
-    cout << "GRAP to place something in this room into your inventory" << endl;
+    cout << "GRAB to place something in this room into your inventory" << endl;
   }
 }
 int main() {
@@ -127,14 +127,58 @@ int main() {
     }
     printOptions(current, inventory);
     char* input = new char(10);
-    cin.getLine(input, 10);
+    cin.getline(input, 10);
     if (strcmp("DROP",input) == 0) {
       if (inventory->size() == 0) {
 	cout << "Statement not recognized" << endl;
       }
-      /*
-
-       */
+      else {
+	cout << "Input the name of the object you want to drop" << endl;
+	char* objectName = new char(20);
+	cin.getline(objectName, 20);
+	int countTemp = 0;
+	for (int a = 0; a < inventory->size(); a++) {
+	  if (strcmp(objectName, inventory->at(a)->getName()) == 0) {
+	    current->addObject(inventory->at(a));
+	    inventory->erase(inventory->begin() + a);
+	    countTemp++;
+	    break;
+	  }
+	}
+	if (countTemp == 0) {
+	  cout << "Object not found" << endl;
+	}
+      }
     }
+    else if (strcmp("GRAB", input) == 0) {
+      if (current->sizeOfInventory() == 0) {
+	cout << "Statement not recognized" << endl;
+      }
+      else {
+	cout << "Input the name of the object you want to take from room" << endl;
+	char* objectName = new char(20);
+	cin.getline(objectName, 20);
+	int countTemp = 0;
+	for (int a = 0; a < current->sizeOfInventory(); a++) {
+	  if (strcmp(objectName, current->getHasObjects()->at(a)->getName()) == 0) {
+	    inventory->push_back(current->getHasObjects()->at(a));
+	    current->removeObject(current->getHasObjects()->at(a));
+	    countTemp++;
+	    break;
+	  }
+	}
+	if (countTemp == 0) {
+	  cout << "Object not found" << endl;
+	}
+      }
+    }
+    else if (current->getNextRooms().find(input) != current->getNextRooms().end()) {
+      current = current->getNextRooms().at(input);
+      cout << "hi" << endl;
+    }
+    else {
+      cout << "hi" << endl;
+    }
+    cout << "hi" << endl;;
   }
 }
