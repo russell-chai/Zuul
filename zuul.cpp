@@ -1,3 +1,8 @@
+/*
+Author: Russell Chai
+11/18/17
+this program is a game where the user can go to rooms and grab and place objects
+ */
 #include <iostream>
 #include <vector>
 #include <map>
@@ -5,30 +10,35 @@
 #include "Room.h"
 #include "Objects.h"
 
+//print what the user can do
 void printOptions(Room *current, vector<Objects*> *inventory) {
-  cout << "You are in: " << current->getName() << endl;
-  cout << "There is: " << endl;
+  cout << "You are in: " << current->getName() << endl; //prints out what room user is in currently
+
+  //prints out the items in the room
+  cout << "In this room, there is: " << endl;
   if (current->sizeOfInventory() == 0) {
-    cout << "nothing in this room" << endl;
+    cout << "nothing" << endl;
   }
   else {
     for (int a = 0; a < current->sizeOfInventory(); a++) {
       cout << current->getHasObjects()->at(a)->getName() << " " << endl;
     }
-    cout << "in this room" << endl;
   }
-  
+  cout << endl;
+
+  //prints out the items in user's inventory
   cout << "You have: " << endl;
   if (inventory->size() == 0) {
-    cout << "nothing in your inventory" << endl;
+    cout << "nothing" << endl;
   }
   else {
     for (int a = 0; a < inventory->size(); a++) {
       cout << inventory->at(a)->getName() << " " << endl;
     }
-    cout << "in your inventory" << endl;
   }
+  cout << endl;
 
+  //printing input options
   cout << "Type.." << endl;
   map<char*, Room*> :: iterator itr = current->getNextRooms().begin();
   for (int a = 0; a < current->getNextRooms().size(); a++) {
@@ -41,14 +51,19 @@ void printOptions(Room *current, vector<Objects*> *inventory) {
   if (current->sizeOfInventory() > 0) {
     cout << "GRAB to place something in this room into your inventory" << endl;
   }
+  cout << "QUIT to quit game" << endl;
 }
+
+
 int main() {
+  //creating the objects
   Objects *waterBottle = new Objects("Water Bottle");
   Objects *backpack = new Objects("Backpack");
   Objects *sandwich = new Objects("Sandwich");
   Objects *laptop = new Objects("Laptop");
   Objects *tennisBall = new Objects("Tennis Ball");
-  
+
+  //creating the rooms and placing objects in rooms
   Room *parkingLot = new Room("Parking Lot");
   Room *cornell = new Room("Cornell");
   Room *mainHall = new Room("Main Hall");
@@ -65,9 +80,13 @@ int main() {
   Room *gym = new Room("Gym");
   Room *mathClass = new Room("Math Class");
   Room *aWing = new Room("A Wing");
+  aWing->addObject(backpack);
   Room *footballField = new Room("Football Field");
+  footballField->addObject(waterBottle);
   Room *bathroom = new Room("Bathroom");
 
+
+  //linking rooms to each other
   parkingLot->addAdjacentRoom("FORWARD", mainHall);
   parkingLot->addAdjacentRoom("BACKWARD", cornell);
   parkingLot->addAdjacentRoom("LEFT", tennisCourt);
@@ -114,20 +133,26 @@ int main() {
 
   bathroom->addAdjacentRoom("FORWARD", aWing);
 
-  Room *current = parkingLot;
-  vector<Objects*> *inventory = new vector<Objects*>();
+
+  Room *current = parkingLot; //begin in parking lot
+  vector<Objects*> *inventory = new vector<Objects*>();//personal inventory
   while (true) {
+    //losing condition: going onto cornell
     if (current == cornell) {
       cout << "On Cornell, you got hit by a car and died :(" << endl << "Game Over" << endl;
       return 0;
     }
-    if (current == locker && locker->sizeOfInventory() == 5) {
+    //winning condition: dropping all 5 items into locker
+    if (current == locker && locker->sizeOfInventory() == 5) {1
       cout << "You have successfully placed all the items in the locker :)" << endl << "You Won!" << endl;
       return 0;
     }
-    printOptions(current, inventory);
+    printOptions(current, inventory);//print options
+    
     char* input = new char(10);
     cin.getline(input, 10);
+
+    //if user wants to place item in room
     if (strcmp("DROP",input) == 0) {
       if (inventory->size() == 0) {
 	cout << "Statement not recognized" << endl;
@@ -137,6 +162,8 @@ int main() {
 	char* objectName = new char(20);
 	cin.getline(objectName, 20);
 	int countTemp = 0;
+	
+	//searches through all of inventory for item
 	for (int a = 0; a < inventory->size(); a++) {
 	  if (strcmp(objectName, inventory->at(a)->getName()) == 0) {
 	    current->addObject(inventory->at(a));
@@ -150,6 +177,7 @@ int main() {
 	}
       }
     }
+    //if user wants to grab something from room
     else if (strcmp("GRAB", input) == 0) {
       if (current->sizeOfInventory() == 0) {
 	cout << "Statement not recognized" << endl;
@@ -159,6 +187,7 @@ int main() {
 	char* objectName = new char(20);
 	cin.getline(objectName, 20);
 	int countTemp = 0;
+	//searches through all the items in the room
 	for (int a = 0; a < current->sizeOfInventory(); a++) {
 	  if (strcmp(objectName, current->getHasObjects()->at(a)->getName()) == 0) {
 	    inventory->push_back(current->getHasObjects()->at(a));
@@ -172,13 +201,28 @@ int main() {
 	}
       }
     }
-    else if (current->getNextRooms().find(input) != current->getNextRooms().end()) {
-      current = current->getNextRooms().at(input);
-      cout << "hi" << endl;
+    //if user wants to quit
+    else if (strcmp("QUIT", input) == 0) {
+      cout << "Game Ended" << endl;
+      return 0;
     }
-    else {
-      cout << "hi" << endl;
+    
+    map<char*, Room*> :: iterator itr = current->getNextRooms().begin();
+    bool found = false;
+    //searches through all the adjacent room and see if they match input
+    for (int a = 0; a < current->getNextRooms().size(); a++) {
+      if (strcmp(itr->first, input) == 0) {
+	current = itr->second;
+	found = true;
+	break;
+      }
+      itr++;
     }
-    cout << "hi" << endl;;
+    if (found == false) {
+      cout << "Statement not recognized" << endl;
+    }
+    cout << endl;
+    cout << endl;
+    cout << endl;
   }
 }

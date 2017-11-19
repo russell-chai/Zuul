@@ -1,3 +1,6 @@
+/*
+header file for Room
+ */
 #include <iostream>
 #include <vector>
 #include <map>
@@ -6,6 +9,7 @@ using namespace std;
 
 class Room {
  public:
+  //functions
   Room(char* newName);
   char* getName();
   vector<Objects*>* getHasObjects();
@@ -16,6 +20,7 @@ class Room {
   int sizeOfInventory();
  
  private:
+  //private variables
   char* name;
   vector<Objects*> *hasObjects;
   map<char*, Room*> nextRooms;
