@@ -143,7 +143,7 @@ int main() {
       return 0;
     }
     //winning condition: dropping all 5 items into locker
-    if (current == locker && locker->sizeOfInventory() == 5) {1
+    if (current == locker && locker->sizeOfInventory() == 5) {
       cout << "You have successfully placed all the items in the locker :)" << endl << "You Won!" << endl;
       return 0;
     }
